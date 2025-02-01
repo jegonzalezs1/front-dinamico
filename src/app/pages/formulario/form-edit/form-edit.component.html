@@ -1,0 +1,14 @@
+<h5 class="mb-5 text-lg font-bold tracking-tight text-gray-900 dark:text-white ">Mantenimientos de Formularios</h5>
+<form [formGroup]="formFormulario" class="w-full" (ngSubmit)="onSubmit()" novalidate>
+  <div class="mb-5">
+    <input type="hidden" id="idFormulario" class="form-control" formControlName="idFormulario">
+  </div>
+  <div class="mb-5">
+    <label for="nombreFormulario" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nombre del Formulario:</label>
+    <input type="text" id="nombreFormulario" class="form-control" formControlName="nombreFormulario">
+  </div>
+  <div class="flex justify-end items-center mb-6">
+    <button type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:outline-none font-small px-3 py-2 text-center mb-2">Guardar</button>
+    <button type="button" (click)="onClose()" class="text-white ms-2 bg-gray-700 hover:bg-gray-800 font-small px-3 py-2 text-center mb-2">Cancelar</button>
+  </div>
+</form>

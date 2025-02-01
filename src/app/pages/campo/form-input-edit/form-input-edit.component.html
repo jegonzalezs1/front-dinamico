@@ -1,0 +1,27 @@
+<h5 class="mb-5 text-lg font-bold tracking-tight text-gray-900 dark:text-white ">Mantenimientos de Campos</h5>
+<form [formGroup]="formCampo" class="w-full" (ngSubmit)="onSubmit()" novalidate>
+  <div class="mb-5">
+    <input type="hidden" id="idCampo" class="form-control" formControlName="idCampo">
+  </div>
+  <div class="mb-5">
+    <label for="nombreCampo" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nombre del Campo:</label>
+    <input type="text" id="nombreCampo" class="form-control" formControlName="nombreCampo">
+  </div>
+  <div class="mb-5">
+    <label for="tipoCampo" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Tipo de Campo:</label>
+    <input type="text" id="tipoCampo" class="form-control" formControlName="tipoCampo">
+  </div>
+  <div class="mb-5">
+    <label for="idFormulario" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Formulario:</label>
+    <select formControlName="idFormulario" class="form-control form-select form-select-lg mb-6">
+      <option [ngValue]="null">Seleccione un formulario</option>
+      <option *ngFor="let formulario of formularios" [ngValue]="formulario.idFormulario">
+        {{ formulario.nombreFormulario }}
+      </option>
+    </select>
+  </div>
+  <div class="flex justify-end items-center mb-6">
+    <button type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:outline-none font-small px-3 py-2 text-center mb-2">Guardar</button>
+    <button type="button" (click)="onClose()" class="text-white ms-2 bg-gray-700 hover:bg-gray-800 font-small px-3 py-2 text-center mb-2">Cancelar</button>
+  </div>
+</form>
