@@ -6,6 +6,7 @@ import { FormViewComponent } from './pages/formulario/form-view/form-view.compon
 
 export const routes: Routes = [
     { path: '', component: HomeComponent },
+    { path: '/home', component: HomeComponent },
     { path: 'form-input-list', component: FormInputListComponent },
     { path: 'form-list', component: FormListComponent },
     { path: 'form-view/:id', component: FormViewComponent }
