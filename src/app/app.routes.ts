@@ -10,6 +10,6 @@ export const routes: Routes = [
     { path: 'form-input-list', component: FormInputListComponent },
     { path: 'form-list', component: FormListComponent },
     { path: 'form-view/:id', component: FormViewComponent }
-  ];
+];
 
   

@@ -3,8 +3,8 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  urlAddress: 'http://localhost:44306/' // Local
-  // urlAddress: 'http://localhost:8085/' //Docker
+  // urlAddress: 'http://localhost:44306/' // Local
+  urlAddress: 'http://localhost:8085/' //Docker
 };
 
 /*
