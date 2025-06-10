@@ -27,7 +27,7 @@ export class FormEditComponent implements OnChanges {
   ) {
     this.formFormulario = this.fb.group({
       idFormulario: new FormControl(0),
-      nombreFormulario: new FormControl('', [Validators.required]),
+      nombreFormulario: new FormControl('', [Validators.required])
     });
   }
 
@@ -36,10 +36,12 @@ export class FormEditComponent implements OnChanges {
   }
 
   ngOnChanges(): void {
-    if (this.data) {
+    if (!this.data || this.data.idFormulario === 0) {
+      this.formFormulario.reset();
+    } else {
       this.formFormulario.patchValue({
         idFormulario: this.data.idFormulario,
-        nombreFormulario: this.data.nombreFormulario,
+        nombreFormulario: this.data.nombreFormulario
       });
     }
   }

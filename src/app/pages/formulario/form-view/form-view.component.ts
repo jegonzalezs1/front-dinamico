@@ -1,10 +1,7 @@
-import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
-import { CommonModule } from '@angular/common';
-import { ReactiveFormsModule } from '@angular/forms';
+import { Component, EventEmitter, Input, OnChanges, Output } from '@angular/core';
 import { IFormulario } from '../../../shared/models/Formulario';
-import { CampoService } from '../../../services/campo/campo.service';
-import { ICampo } from '../../../shared/models/Campo';
+import { FormGroup, FormBuilder, ReactiveFormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-form-view',
@@ -13,21 +10,41 @@ import { ICampo } from '../../../shared/models/Campo';
   templateUrl: './form-view.component.html',
   styleUrls: ['./form-view.component.scss']
 })
-export class FormViewComponent implements OnInit {
-  @Input() formulario: IFormulario | null = null;
+export class FormViewComponent implements OnChanges {
+  @Input() formulario!: IFormulario |  null;
   @Output() onCloseModel = new EventEmitter();
 
-  formView: FormGroup = this.fb.group({});
-  campos: ICampo[] = [];
+  formView!: FormGroup;
 
-  constructor(
-    private fb: FormBuilder,
-    private campoService: CampoService) {}
+  constructor(private fb: FormBuilder) {
+    this.formView = this.fb.group({});
+  }
 
-  ngOnInit(): void {
-    this.campoService.getAllCampos().subscribe((data: ICampo[]) => {
-      this.campos = data;
+  ngOnChanges(): void {
+    this.validarFormulario();
+  }
+
+  viewFormulario(): void {
+    if (!this.formulario || !this.formulario.campos) {
+      return;
+    }
+
+    this.formulario.campos.forEach((campo) => {
+      this.formView.addControl(campo.nombreCampo, this.fb.control({ value: '', disabled: false }));
     });
+  }
+
+  validarFormulario(){
+    if (this.formulario) {
+      if (!this.formulario.campos) {
+        this.formulario.campos = [];
+      }
+      this.viewFormulario();
+    }
+  }
+  
+  onClose() {
+    this.onCloseModel.emit(false);
   }
 
   obtenerTipoEntradaInput(tipo: string): string {
@@ -41,9 +58,5 @@ export class FormViewComponent implements OnInit {
       default:
         return 'text';
     }
-  }
-
-  onClose() {
-    this.onCloseModel.emit(false);
   }
 }

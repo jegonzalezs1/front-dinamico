@@ -51,11 +51,19 @@ export class FormInputListComponent implements OnInit {
     });
   }
 
-  editCampo(campo: ICampo) {
-    this.campo = campo;
-    this.openModel();
+  resetCampo(): void {
+    this.campo = { idCampo: 0, nombreCampo: '', tipoCampo: '', idFormulario: 0, formulario: { idFormulario: 0, nombreFormulario: '' }}; 
   }
 
+  createCampo() {
+    this.openModelCreate();
+  }
+
+  editCampo(campo: ICampo) {
+    this.campo = campo;
+    this.openModelEdit();
+  }
+  
   deleteCampo(idCampo: number) {
     this.campoService.deleteCampo(idCampo).subscribe({
       complete: () => {
@@ -68,11 +76,21 @@ export class FormInputListComponent implements OnInit {
     });
   }
 
-  openModel() {
+  openModelCreate() {
+    this.isModelOpen = true;
+    this.resetCampo();
+  }
+
+  closeModelCreate() {
+    this.isModelOpen = false;
+    this.getAllCampos();
+  }
+
+  openModelEdit() {
     this.isModelOpen = true;
   }
 
-  closeModel() {
+  closeModelEdit() {
     this.isModelOpen = false;
     this.getAllCampos();
   }

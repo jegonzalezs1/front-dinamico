@@ -4,9 +4,7 @@ import { FormularioService } from '../../../services/formulario/formulario.servi
 import { ToastrService } from 'ngx-toastr';
 import { ModelComponent } from '../../../shared/ui/model/model.component';
 import { FormEditComponent } from '../form-edit/form-edit.component';
-import { Router } from '@angular/router';
 import { FormViewComponent } from '../form-view/form-view.component';
-import { CampoService } from '../../../services/campo/campo.service';
 
 @Component({
   selector: 'app-form-list',
@@ -24,9 +22,7 @@ export class FormListComponent implements OnInit{
 
   constructor(
     private formularioService: FormularioService,
-    private campoService: CampoService,
-    private toastr: ToastrService,
-    private router: Router
+    private toastr: ToastrService
   ) {}
 
   ngOnInit(): void {
@@ -43,13 +39,21 @@ export class FormListComponent implements OnInit{
     });
   }
 
-  editFormulario(formulario: any) {
+  resetFormulario(): void {
+    this.formulario = { idFormulario: 0, nombreFormulario: '' }; 
+  }
+
+  createFormulario() {
+    this.openModelCreate();
+  }
+
+  editFormulario(formulario: IFormulario) {
     this.formulario = formulario;
     this.openModelEdit();
   }
 
   viewFormulario(idFormulario: number): void {
-    this.formularioService.getFormulario(idFormulario).subscribe((formulario) => {
+    this.formularioService.getFormularioCampos(idFormulario).subscribe((formulario) => {
       this.formularioSeleccionado = formulario;
     })
     this.openModelView();
@@ -65,6 +69,16 @@ export class FormListComponent implements OnInit{
         this.toastr.warning("Hubo un problema al eliminar los registros", "Información del formulario");
       }
     });
+  }
+
+  openModelCreate() {
+    this.isModelOpen = true;
+    this.resetFormulario();
+  }
+
+  closeModelCreate() {
+    this.isModelOpen = false;
+    this.getAllFormularios();
   }
 
   openModelEdit() {

@@ -1,4 +1,3 @@
-// formulario.service.ts
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
@@ -20,6 +19,10 @@ export class FormularioService {
 
   getFormulario(idFormulario: number): Observable<IFormulario> {
     return this.http.get<IFormulario>(`${this.urlApp}${this.urlApi}${idFormulario}`);
+  }
+
+  getFormularioCampos(idFormulario: number): Observable<IFormulario> {
+    return this.http.get<IFormulario>(`${this.urlApp}${this.urlApi}campos/${idFormulario}`);
   }
 
   createFormulario(formulario: IFormulario): Observable<IFormulario> {

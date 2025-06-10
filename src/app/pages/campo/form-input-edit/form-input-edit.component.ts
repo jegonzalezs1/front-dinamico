@@ -32,10 +32,10 @@ export class FormInputEditComponent implements OnChanges {
       idCampo: new FormControl(0),
       nombreCampo: new FormControl('', [Validators.required]),
       tipoCampo: new FormControl(0, [Validators.required]),
-      idFormulario: new FormControl(null, [Validators.required]), // Combo para seleccionar formulario
+      idFormulario: new FormControl(null, [Validators.required])
     });
 
-    this.getAllFormularios(); // Cargar personas al iniciar el componente
+    this.getAllFormularios();
   }
 
   getAllFormularios() {
@@ -54,7 +54,9 @@ export class FormInputEditComponent implements OnChanges {
   }
 
   ngOnChanges(): void {
-    if (this.data) {
+    if (!this.data || this.data.idCampo === 0) {
+      this.formCampo.reset();
+    } else {
       this.formCampo.patchValue({
         idCampo: this.data.idCampo,
         nombreCampo: this.data.nombreCampo,

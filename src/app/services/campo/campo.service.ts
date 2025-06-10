@@ -1,4 +1,3 @@
-// campo.service.ts
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
@@ -18,8 +17,8 @@ export class CampoService {
     return this.http.get<ICampo[]>(`${this.urlApp}${this.urlApi}`);
   }
 
-  getCampo(idCampo: number): Observable<ICampo[]> {
-    return this.http.get<ICampo[]>(`${this.urlApp}${this.urlApi}${idCampo}`);
+  getCampo(idCampo: number): Observable<ICampo> {
+    return this.http.get<ICampo>(`${this.urlApp}${this.urlApi}${idCampo}`);
   }
 
   createCampo(campo: ICampo): Observable<ICampo> {

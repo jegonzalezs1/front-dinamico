@@ -1,12 +1,22 @@
 <div *ngIf="formulario">
-  <h5 class="mb-5 text-lg font-bold tracking-tight text-gray-900 dark:text-white ">{{formulario.nombreFormulario}}</h5>
+
+  <h5 class="mb-5 text-lg font-bold tracking-tight text-gray-900 dark:text-white">{{ formulario.nombreFormulario }}</h5>
+
   <form [formGroup]="formView" class="w-full" novalidate>
-    <div *ngFor="let campo of campos" class="mb-5">
-      <label [for]="campo.nombreCampo" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">{{ campo.nombreCampo }}</label>
-      <input [type]="obtenerTipoEntradaInput(campo.tipoCampo)" [id]="campo.tipoCampo" class="form-control" [formControlName]="campo.tipoCampo"/>
+    <div *ngIf="formulario.campos && formulario.campos.length > 0; else noCampos">
+      <div *ngFor="let campo of formulario.campos" class="mb-5">
+        <label [for]="campo.nombreCampo" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">{{ campo.nombreCampo }}</label>
+        <input [id]="campo.nombreCampo" class="form-control" [formControlName]="campo.nombreCampo" [type]="obtenerTipoEntradaInput(campo.tipoCampo)"/>
+      </div>
     </div>
+
+    <ng-template #noCampos>
+      <p class="text-gray-500">No existen campos y controles disponibles para este formulario.</p>
+    </ng-template>
+
     <div class="flex justify-end items-center mb-6">
       <button type="button" (click)="onClose()" class="text-white ms-2 bg-gray-700 hover:bg-gray-800 font-small px-3 py-2 text-center mb-2">Cerrar</button>
     </div>
   </form>
+
 </div>
