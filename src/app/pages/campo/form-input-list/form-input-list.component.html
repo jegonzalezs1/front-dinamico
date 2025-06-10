@@ -29,10 +29,10 @@
           <td class="px-6 py-4 text-justify">{{ item.tipoCampo }}</td>
           <td class="px-6 py-4 text-justify">{{ item.formulario.nombreFormulario }}</td>
           <td class="px-6 py-4 text-center">
-            <button type="button" (click)="item.idCampo && editCampo(item)" class="font-medium text-green-700 dark:text-green-500 hover:underline mr-4">
+            <button type="button" title="Editar" (click)="item.idCampo && editCampo(item)" class="font-medium text-green-700 dark:text-green-500 hover:underline mr-4">
               <i class="bi bi-pencil-square">Editar</i>
             </button>
-            <button type="button" disabled (click)="item.idCampo && deleteCampo(item.idCampo)" class="font-medium text-red-600 dark:text-red-400 hover:underline">
+            <button type="button" title="Eliminar" (click)="item.idCampo && deleteCampo(item.idCampo)" class="font-medium text-red-600 dark:text-red-400 hover:underline">
               <i class="bi bi-trash">Eliminar</i>
             </button>
           </td>

@@ -25,14 +25,14 @@
       <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
         <td class="px-6 py-4 text-justify">{{ item.nombreFormulario }}</td>
         <td class="px-6 py-4 text-center">
-          <button type="button" (click)="item.idFormulario && editFormulario(item)" class="font-medium text-green-700 dark:text-green-500 hover:underline mr-4">
-            <i class="bi bi-pencil-square">Editar</i>
+          <button type="button" title="Editar" (click)="item.idFormulario && editFormulario(item)" class="font-medium text-green-700 dark:text-green-500 hover:underline mr-4">
+            <i class="bi bi-pencil-square"></i>
           </button>
-          <button type="button" (click)="item.idFormulario && viewFormulario(item.idFormulario)" class="font-medium text-blue-500 dark:text-blue-300 hover:underline mr-4">
-            <i class="bi bi-eye">Visualizar</i>
+          <button type="button" title="Visualizar" (click)="item.idFormulario && viewFormulario(item.idFormulario)" class="font-medium text-blue-500 dark:text-blue-300 hover:underline mr-4">
+            <i class="bi bi-eye"></i>
           </button>
-          <button type="button" (click)="item.idFormulario && deleteFormulario(item.idFormulario)" class="font-medium text-red-600 dark:text-red-400 hover:underline">
-            <i class="bi bi-trash">Eliminar</i>
+          <button type="button" title="Eliminar" (click)="item.idFormulario && deleteFormulario(item.idFormulario)" class="font-medium text-red-600 dark:text-red-400 hover:underline">
+            <i class="bi bi-trash"></i>
           </button>
         </td>
       </tr>
